@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Market — StockSim</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <div id="sidebar-container"></div>
+    <div class="main-content">
+      <div id="topbar-container"></div>
+      <div class="content-body">
+        <div class="panel-header" style="margin-bottom:20px;">
+          <h2>Simulated Market Watch</h2>
+          <input type="text" id="market-search" class="form-control" placeholder="Search stocks by name or symbol..." style="max-width:300px;" oninput="filterMarket()">
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Current Price</th>
+              <th>Change</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="market-stocks-container"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Buy Modal -->
+  <div id="buy-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="buy-stock-name">Buy Stock</h2>
+        <button class="close-btn" onclick="closeModals()">&times;</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div>Current Price: <strong id="buy-stock-price">₹0</strong></div>
+        <div>Wallet Balance: <strong id="buy-wallet-bal">₹0</strong></div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label>Quantity</label>
+          <input type="number" id="buy-quantity" class="form-control" min="1" value="1" oninput="updateBuyTotal()">
+        </div>
+        <div>Total Cost: <strong id="buy-total-cost">₹0</strong></div>
+        <button class="btn btn-success" onclick="executeBuy()">Confirm Purchase</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sell Modal -->
+  <div id="sell-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="sell-stock-name">Sell Stock</h2>
+        <button class="close-btn" onclick="closeModals()">&times;</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div>Current Price: <strong id="sell-stock-price">₹0</strong></div>
+        <div>Owned Quantity: <strong id="sell-owned-qty">0</strong></div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label>Quantity to Sell</label>
+          <input type="number" id="sell-quantity" class="form-control" min="1" value="1" oninput="updateSellProceeds()">
+        </div>
+        <div>Estimated Proceeds: <strong id="sell-estimated-proceeds">₹0</strong></div>
+        <button class="btn btn-danger" onclick="executeSell()">Confirm Sale</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/market.js"></script>
+  <script>
+    renderLayout('market');
+    renderMarketPage();
+  </script>
+</body>
+</html>

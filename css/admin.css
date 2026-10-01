@@ -1,0 +1,16 @@
+.admin-badge {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.admin-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
